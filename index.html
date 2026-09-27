@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#590d22">
+<title>For Hippo</title>
+
+<style>
+:root {
+  --burgundy: #800020;
+  --wine: #590d22;
+  --dark: #260711;
+  --red: #b52b4a;
+  --cream: #fff3e8;
+  --pink: #f4c6cf;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--cream);
+  font-family: Georgia, "Times New Roman", serif;
+  background-color: var(--dark);
+  background-image:
+    repeating-linear-gradient(
+      0deg, transparent 0 5px,
+      #ffffff0b 5px 6px
+    ),
+    repeating-linear-gradient(
+      90deg, transparent 0 5px,
+      #ffffff0b 5px 6px
+    ),
+    linear-gradient(145deg, #641329, #260711 75%);
+  text-align: center;
+  overflow-x: hidden;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.hero {
+  min-height: 100svh;
+  padding: 65px 20px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.tag {
+  border: 1px dashed var(--pink);
+  padding: 9px 15px;
+  border-radius: 30px;
+  letter-spacing: 2px;
+  font: 10px Arial, sans-serif;
+}
+
+h1 {
+  font-size: clamp(43px, 10vw, 76px);
+  line-height: 1.05;
+  margin: 26px 0 12px;
+  text-shadow: 3px 4px #260711;
+}
+
+h1 span {
+  color: var(--pink);
+}
+
+.subtitle {
+  max-width: 330px;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #f8dce2;
+}
+
+.sticker {
+  width: 175px;
+  height: 175px;
+  margin: 27px 0;
+  display: grid;
+  place-items: center;
+  border: 2px dashed var(--pink);
+  border-radius: 50%;
+  background:
+    repeating-linear-gradient(
+      45deg, #ffffff08 0 3px,
+      transparent 3px 7px
+    ),
+    linear-gradient(145deg, #a72c4b, #4c0c20);
+  box-shadow: 0 15px 40px #16030a80;
+  font-size: 68px;
+  transform: rotate(-5deg);
+}
+
+.main-btn {
+  padding: 14px 24px;
+  margin-top: 15px;
+  border: 0;
+  border-radius: 30px;
+  background: var(--cream);
+  color: var(--wine);
+  font-weight: bold;
+  box-shadow: 0 5px 0 #300714;
+  transition: transform .2s;
+}
+
+.main-btn:active {
+  transform: translateY(3px);
+  box-shadow: none;
+}
+
+section {
+  padding: 65px 20px;
+  max-width: 760px;
+  margin: auto;
+}
+
+.section-title {
+  font-size: clamp(27px, 6vw, 36px);
+  margin-bottom: 12px;
+}
+
+.note {
+  color: #f5dce2;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.divider {
+  color: var(--pink);
+  letter-spacing: 10px;
+  margin: 25px 0;
+}
+
+.card {
+  position: relative;
+  max-width: 470px;
+  margin: 30px auto;
+  padding: 27px 23px;
+  background: var(--cream);
+  color: #4b1022;
+  border: 2px dashed #c98c9d;
+  outline: 5px solid #fff3e80d;
+  box-shadow: 7px 9px 0 #16030a70;
+  transform: rotate(-1deg);
+}
+
+.card::before {
+  content: "♥";
+  position: absolute;
+  top: -19px;
+  right: 15px;
+  font-size: 32px;
+  color: var(--red);
+}
+
+.card h3 {
+  font-size: 23px;
+}
+
+.card p {
+  font-size: 14px;
+  line-height: 2;
+  white-space: pre-line;
+  text-align: left;
+}
+
+.photos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 17px;
+  max-width: 480px;
+  margin: 30px auto;
+}
+
+.photo {
+  padding: 8px 8px 15px;
+  background: var(--cream);
+  color: var(--wine);
+  box-shadow: 0 8px 20px #16030a50;
+}
+
+.photo:nth-child(odd) {
+  transform: rotate(-3deg);
+}
+
+.photo:nth-child(even) {
+  transform: rotate(3deg);
+}
+
+.photo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  background: #d8aab4;
+}
+
+.photo p {
+  margin: 11px 0 0;
+  font-size: 12px;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 25px 0;
+}
+
+.time-box {
+  min-width: 65px;
+  padding: 13px 8px;
+  background: #80002080;
+  border: 1px dashed var(--pink);
+  border-radius: 8px;
+}
+
+.time-box strong {
+  display: block;
+  font-size: 25px;
+}
+
+.time-box small {
+  font: 10px Arial, sans-serif;
+  color: var(--pink);
+}
+
+.final-note {
+  max-width: 450px;
+  margin: 25px auto;
+  padding: 25px 15px;
+  border-top: 1px dashed var(--pink);
+  border-bottom: 1px dashed var(--pink);
+  line-height: 1.9;
+}
+
+footer {
+  padding: 35px 15px;
+  color: var(--pink);
+  font-size: 12px;
+  line-height: 2;
+}
+
+.heart {
+  position: fixed;
+  bottom: -40px;
+  z-index: 10;
+  pointer-events: none;
+  animation: floatUp 4s linear forwards;
+}
+
+@keyframes floatUp {
+  to {
+    transform: translateY(-110vh) rotate(40deg);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 360px) {
+  .countdown {
+    gap: 5px;
+  }
+
+  .time-box {
+    min-width: 57px;
+  }
+
+  .time-box strong {
+    font-size: 21px;
+  }
+}
+  /* MUSIC SECTION */
+.music-section {
+  max-width: 560px;
+  margin: 30px auto;
+  padding: 25px 18px;
+  background: #590d22;
+  border: 2px dashed #f4c6cf;
+  border-radius: 12px;
+  box-shadow: 6px 8px 0 #16030a70;
+}
+
+.music-label {
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: #f4c6cf;
+  margin-bottom: 12px;
+}
+
+.music-title {
+  font-size: clamp(25px, 6vw, 34px);
+  line-height: 1.3;
+  color: #fff3e8;
+  margin: 10px 0 20px;
+  font-style: italic;
+}
+
+.music-frame {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 3px solid #f4c6cf;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.music-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.music-caption {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #f5dce2;
+  margin-top: 18px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HALAMAN PEMBUKA -->
+<header class="hero">
+  <div class="tag">A LITTLE SURPRISE FOR YOU ♡</div>
+
+  <h1>Happy Birthday,<br>
+    <span>HIPPO</span> 
+  </h1>
+
+  <p class="subtitle">
+    To Nasya Jauza Kurniawan,<br>
+    Someone who deserves all the beautiful
+    things in this world.
+  </p>
+
+  <div class="sticker">🎂</div>
+
+  <p class="note">
+    Made with love, just 4 you.<br>
+    November 15, 2026
+  </p>
+
+  <button class="main-btn" onclick="openLetter()">
+    Open your surprise 💌
+  </button>
+</header>
+
+<!-- HITUNG MUNDUR -->
+<section>
+  <h2 class="section-title">Your Special Day :o</h2>
+
+  <p class="note" id="countdownMessage">
+    Counting down to your special day...
+  </p>
+
+  <div class="countdown" id="countdown">
+    <div class="time-box">
+      <strong id="days">00</strong>
+      <small>DAYS</small>
+    </div>
+    <div class="time-box">
+      <strong id="hours">00</strong>
+      <small>HOURS</small>
+    </div>
+    <div class="time-box">
+      <strong id="minutes">00</strong>
+      <small>MINUTES</small>
+    </div>
+    <div class="time-box">
+      <strong id="seconds">00</strong>
+      <small>SECONDS</small>
+    </div>
+  </div>
+
+  <p class="note">
+    A new chapter, another year of beautiful memories. 
+  </p>
+</section>
+
+<!-- SURAT ULANG TAHUN -->
+<section id="letter">
+  <h2 class="section-title">A Letter for You 💌</h2>
+
+  <p class="note">
+    Some words, especially for you.
+  </p>
+
+  <div class="divider">♡ ♡ ♡</div>
+
+  <div class="card">
+    <h3>Dear Nasya,</h3>
+
+    <p>Happy birthday, NASYA! ❤️
+
+Hari yang spesial buat seseorang yang sangat berharga.
+
+Di 18 tahun ini, aku harap kamu selalu diberikan kesehatan, kebahagiaan, kelancaran dalam setiap urusan, dan kekuatan untuk menghadapi apa pun yang datang nanti nya.
+
+Thanks for coming on my life nasya. Makasih buat setiap candaan, cerita, sama momen-momen sederhana jadi istimewa karena ada kamu.
+
+Aku harap kamu bisa terus tumbuh menjadi versi dirimu yang kamu banggakan. Jangan terlalu keras sama diri sendiri, ya nas. Kamu juga pantes mendapatkan waktu untuk beristirahat dan menikmati hal-hal kecil yang bikin kamu bahagia.
+
+Semoga satu per satu impianmu bisa terwujud. Kejar ptn yang kamu impikan nass. May your days always be surrounded by people who truly care about you...
+
+Happy birthday, Nasya.
+
+Wishing you all the happiness in the world. </p>
+
+    <p style="text-align:right">
+      With love,<br>
+      Someone who cares about you :o
+    </p>
+  </div>
+
+  <button class="main-btn" onclick="makeHearts(30)">
+    Send you some love 
+  </button>
+</section>
+
+<!-- GALERI FOTO -->
+<section>
+  <h2 class="section-title">Little Memories 📸</h2>
+
+  <p class="note">
+    Every picture tells a story.
+  </p>
+
+  <div class="photos">
+
+    <div class="photo">
+      <img src="foto1.jpg" alt="Our first memory">
+      <p>our little moment ♡</p>
+    </div>
+
+    <div class="photo">
+      <img src="foto2.jpg" alt="A favorite memory">
+      <p>one to remember ♡</p>
+    </div>
+
+    <div class="photo">
+      <img src="foto3.jpg" alt="A happy moment">
+      <p>my happy memory ♡</p>
+    </div>
+
+    <div class="photo">
+      <img src="foto4.jpg" alt="Another memory">
+      <p>more memories to come ♡</p>
+    </div>
+
+  </div>
+
+  <p class="note">
+    More memories, more laughter, and more
+    little moments to cherish.
+  </p>
+</section>
+  
+  <!-- MUSIC FOR NASYA -->
+<section id="music">
+  <div class="music-section">
+
+    <div class="music-label">
+      A LITTLE PIECE OF MY HEART 
+    </div>
+
+    <h2 class="music-title">
+      songs that make me<br>
+      think about you lately
+    </h2>
+
+    <p class="music-caption">
+      Some songs sound different when
+      someone special comes to mind. 🎧
+    </p>
+
+    <div class="music-frame">
+      <iframe
+        src="https://youtu.be/75-Com9Bo_s?si=XaZOQDzIs7rQO5kS"
+        title="Songs that make me think about you lately"
+        allow="accelerometer; autoplay; clipboard-write;
+        encrypted-media; gyroscope; picture-in-picture;
+        web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <p class="music-caption">
+      press play, and think of us. 
+    </p>
+
+  </div>
+</section>
+
+<!-- HARAPAN -->
+<section>
+  <div class="sticker" style="margin: auto;">🎁</div>
+
+  <h2 class="section-title">Make a Wish, Nasya ✨</h2>
+
+  <div class="final-note">
+    May this new chapter of your life bring
+    you endless happiness, peaceful days,
+    wonderful opportunities, and dreams
+    that slowly become reality.
+
+    <br><br>
+
+    You deserve all the good things
+    life has to offer. 
+  </div>
+
+  <button class="main-btn" onclick="makeHearts(40)">
+    Make a wish ✨
+  </button>
+
+  <p class="note" style="margin-top:25px">
+    Happy birthday, my favorite person. ;)
+  </p>
+</section>
+
+<footer>
+  Made especially for NASYA<br>
+  Burgundy Denim Scrapbook Edition<br>
+  <span>15 · 11 · 2026 ♡</span>
+</footer>
+
+<script>
+// TANGGAL ULANG TAHUN
+const birthday = new Date("2026-11-15T00:00:00+07:00").getTime();
+
+function updateCountdown() {
+  const now = Date.now();
+  const difference = birthday - now;
+
+  if (difference <= 0) {
+    document.getElementById("countdownMessage").textContent =
+      "It's your special day! Happy birthday, Nasya! ";
+
+    document.getElementById("countdown").style.display = "none";
+    return;
+  }
+
+  document.getElementById("days").textContent =
+    Math.floor(difference / 86400000);
+
+  document.getElementById("hours").textContent =
+    Math.floor((difference % 86400000) / 3600000);
+
+  document.getElementById("minutes").textContent =
+    Math.floor((difference % 3600000) / 60000);
+
+  document.getElementById("seconds").textContent =
+    Math.floor((difference % 60000) / 1000);
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// BUKA SURAT
+function openLetter() {
+  document.getElementById("letter").scrollIntoView({
+    behavior: "smooth"
+  });
+
+  makeHearts(15);
+}
+
+// ANIMASI HATI
+function makeHearts(amount) {
+  const symbols = ["❤️", "♥", "💕", "💗", "💖", "✨"];
+
+  for (let i = 0; i < amount; i++) {
+    const heart = document.createElement("span");
+
+    heart.className = "heart";
+    heart.textContent =
+      symbols[Math.floor(Math.random() * symbols.length)];
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (16 + Math.random() * 20) + "px";
+    heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 6500);
+  }
+}
+</script>
+
+</body>
+</html>
